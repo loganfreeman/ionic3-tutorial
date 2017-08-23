@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 import { Platform, ActionSheetController } from 'ionic-angular';
 
+import { IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   templateUrl: 'action-sheet.html'
 })
