@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HTTP } from '@ionic-native/http';
 
+import { MusicPage } from '../pages/music/music';
 
 
 
@@ -12,7 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    MusicPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    MusicPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { IonicPage, NavController } from 'ionic-angular';
 
+import { MusicPage } from '../music/music';
+
 
 @IonicPage()
 @Component({
@@ -13,7 +15,7 @@ export class HelloIonicPage {
 
   }
 
-  goToMusicPage() {
-
+  goToMusicPage(audio){
+    this.navCtrl.push(MusicPage, {audio});
   }
 }
