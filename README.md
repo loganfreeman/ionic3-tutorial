@@ -29,4 +29,7 @@ Substitute ios for android if not on a Mac.
 ```shell
 ionic cordova platform add browser
 ionic cordova run browser
+
+# run on device
+ionic cordova run android --device
 ```
