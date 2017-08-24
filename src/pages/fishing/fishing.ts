@@ -8,6 +8,9 @@ import { IonicPage } from 'ionic-angular';
 
 import { ApiProvider } from './../../providers/api/api';
 
+import { Observable } from 'rxjs/Observable';
+
+
 
 
 @IonicPage()
@@ -23,6 +26,7 @@ export class FishingPage {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
+    // this.items = this.apiProvider.getHotSpots();
     this.items = [];
     for(let i = 1; i < 11; i++) {
       this.items.push({
