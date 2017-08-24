@@ -31,7 +31,8 @@ export class MyApp {
       { title: 'Action Sheet', component: 'ActionSheetPage' },
       { title: 'Google Map', component: 'GoogleMapPage'},
       { title: 'Tabs', component: 'TabsPage'},
-      { title: 'Fishing Report', component: 'FishingPage'}
+      { title: 'Fishing Report', component: 'FishingPage'},
+      { title: 'Films', component: 'FilmsPage'}
     ];
   }
 

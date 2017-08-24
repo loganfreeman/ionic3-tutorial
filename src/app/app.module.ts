@@ -6,6 +6,8 @@ import { HTTP } from '@ionic-native/http';
 
 import { MusicPage } from '../pages/music/music';
 
+import { HttpModule, JsonpModule } from '@angular/http';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,6 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    JsonpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
