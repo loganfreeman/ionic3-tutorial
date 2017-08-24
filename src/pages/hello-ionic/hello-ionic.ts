@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -9,7 +9,11 @@ import { IonicPage } from 'ionic-angular';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-  constructor() {
+  constructor(public navCtrl: NavController) {
+
+  }
+
+  goToMusicPage() {
 
   }
 }

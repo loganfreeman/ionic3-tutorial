@@ -6,6 +6,10 @@ import { ItemDetailsPage } from '../item-details/item-details';
 
 import { IonicPage } from 'ionic-angular';
 
+import cheerio from 'cheerio';
+
+import { HTTP } from '@ionic-native/http';
+
 
 @IonicPage()
 @Component({
@@ -16,7 +20,7 @@ export class FishingPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HTTP) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
