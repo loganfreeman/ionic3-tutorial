@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Jsonp } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import cheerio from 'cheerio';
+
 /*
   Generated class for the ApiProvider provider.
 
