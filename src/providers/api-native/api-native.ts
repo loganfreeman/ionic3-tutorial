@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@ionic-native/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/map';
+
+
 
 
 import cheerio from 'cheerio';
@@ -56,7 +60,7 @@ export class ApiNativeProvider {
   }
 
   getHotSpots() {
-    return this.http.get(this.utahFishingRoot, {}, {}).then(raw => raw.data).then(html => {
+    let promise = this.http.get(this.utahFishingRoot, {}, {}).then(raw => raw.data).then(html => {
       let $ = cheerio.load(html);
       let waterbodies = [];
       $('script').each((index, element) => {
@@ -64,6 +68,8 @@ export class ApiNativeProvider {
       });
       return waterbodies;
     });
+
+    return Observable.fromPromise(promise);
   }
 
 }

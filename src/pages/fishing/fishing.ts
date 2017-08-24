@@ -6,7 +6,7 @@ import { ItemDetailsPage } from '../item-details/item-details';
 
 import { IonicPage } from 'ionic-angular';
 
-import { ApiProvider } from './../../providers/api/api';
+import { ApiNativeProvider } from './../../providers/api-native/api-native';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -20,21 +20,21 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FishingPage {
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Observable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
-    // this.items = this.apiProvider.getHotSpots();
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.items = this.apiProvider.getHotSpots();
+    // this.items = [];
+    // for(let i = 1; i < 11; i++) {
+    //   this.items.push({
+    //     title: 'Item ' + i,
+    //     note: 'This is item #' + i,
+    //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+    //   });
+    // }
   }
 
   itemTapped(event, item) {

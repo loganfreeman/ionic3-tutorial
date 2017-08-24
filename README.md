@@ -24,3 +24,9 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+
+### How to run
+```shell
+ionic cordova platform add browser
+ionic cordova run browser
+```
