@@ -30,7 +30,8 @@ export class MyApp {
       { title: 'My First List', component: 'ListPage' },
       { title: 'Action Sheet', component: 'ActionSheetPage' },
       { title: 'Google Map', component: 'GoogleMapPage'},
-      { title: 'Tabs', component: 'TabsPage'}
+      { title: 'Tabs', component: 'TabsPage'},
+      { title: 'Fishing Report', component: 'FishingPage'}
     ];
   }
 
