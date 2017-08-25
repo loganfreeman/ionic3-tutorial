@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
+import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -17,15 +18,19 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
   templateUrl: 'fishing.html'
 })
 export class FishingPage {
+  options : GeolocationOptions;
   items: Observable<any>;
   originalItems: Observable<any>;
+  currentPos: Observable<Geoposition>;
+  distance: number;
   keyword: string;
   loading: Loading  = this.loadingCtrl.create({
     spinner: 'hide',
     content: 'Loading Please Wait...'
   });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider, public loadingCtrl: LoadingController, private launchNavigator: LaunchNavigator) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider, public loadingCtrl: LoadingController,
+    private launchNavigator: LaunchNavigator, private geolocation : Geolocation) {
     this.items = this.apiProvider.getHotSpots();
 
     this.originalItems = this.items;
@@ -35,6 +40,20 @@ export class FishingPage {
     });
 
     this.presentLoadingText();
+  }
+
+  ionViewDidEnter(){
+      //this.getUserPosition();
+      //this.loadMap();
+      this.currentPos = this.getUserPosition();
+  }
+
+  getUserPosition() {
+    this.options = {
+        enableHighAccuracy : true
+    };
+    let promise = this.geolocation.getCurrentPosition(this.options);
+    return Observable.fromPromise(promise);
   }
 
   navigate(latitude, longitude) {

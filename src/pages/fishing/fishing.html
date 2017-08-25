@@ -10,6 +10,21 @@
 <ion-content padding>
   <ion-searchbar [(ngModel)]="keyword" (ionInput)="setFilter()"></ion-searchbar>
 
+
+
+  <ion-list>
+    <ion-item>
+      Distance
+      <ion-badge item-end color="secondary">{{distance}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-range min="5" max="200" pin="true" [(ngModel)]="distance" color="secondary">
+        <ion-label range-left>5</ion-label>
+        <ion-label range-right>200</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
   <ion-list radio-group>
     <ion-item *ngFor="let status of ['All', 'Good', 'Hot', 'Fair', 'Slow', 'Closed']">
       <ion-label>{{status}}</ion-label>
