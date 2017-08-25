@@ -45,6 +45,10 @@ export class FishingPage {
     // }
   }
 
+  navigate(latitude, longitude) {
+   return true;
+  }
+
   presentLoadingText() {
     this.loading.present();
   }

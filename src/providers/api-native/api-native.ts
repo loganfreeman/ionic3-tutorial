@@ -20,7 +20,7 @@ function findTextAndReturnRemainder(target, variable) {
   return result;
 }
 
-function getRating(status:string) {
+function getRating(status:string): Array<number> {
   let ratings = {
     "Good": 3,
     "Hot": 4,
@@ -29,7 +29,12 @@ function getRating(status:string) {
     "Closed": 0,
     "No recent report": 0
   }
-  return ratings[status];
+  return Array.from(new Array(ratings[status]), (x,i) => i)
+  //return ratings[status];
+}
+
+function getDirectionUrl(latitude, longitude) {
+  return `http://maps.google.com/?q=${latitude},${longitude}`
 }
 
 function getWaterBody(text,waterbodies = []) {
@@ -41,15 +46,16 @@ function getWaterBody(text,waterbodies = []) {
     var result = eval(findAndClean);
 
     result.forEach((waterbody) => {
-      //let url = `https://wildlife.utah.gov/hotspots/detailed.php?id=${waterbody[3]}`;
+      let url = `https://wildlife.utah.gov/hotspots/detailed.php?id=${waterbody[3]}`;
       waterbodies.push({
         title: waterbody[0],
-        longitude: waterbody[1],
-        latitude: waterbody[2],
+        latitude: waterbody[1],
+        longitude: waterbody[2],
         status: waterbody[4],
-        rate: getRating(waterbody[4]),
+        rating: getRating(waterbody[4]),
         kind: waterbody[5],
-        link: waterbody[6]
+        link: url,
+        direction: getDirectionUrl(waterbody[1], waterbody[2])
       });
     })
   }

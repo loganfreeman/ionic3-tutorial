@@ -9,12 +9,32 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of (items | async)" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+
+
+    <ion-card *ngFor="let item of (items | async)" >
+
+      <ion-card-header (click)="itemTapped($event, item)">
+        <span> {{item.title}} </span>
+        <span [ngSwitch]="item.status">
+          <div *ngSwitchCase="'No recent report'">
+            <strong>No recent report</strong>
+          </div>
+          <div class="rating" *ngSwitchDefault>
+            <strong>{{item.status}}</strong>
+            <span *ngFor="let index of item.rating">☆</span>
+          </div>
+        </span>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>{{item.kind}}</strong>
+        <ion-row>
+          <button ion-button (click)="navigate(item.latitude, item.longitude)"><ion-icon name="map"></ion-icon></button>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-card>
+
+
   </ion-list>
 </ion-content>
