@@ -10,6 +10,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
@@ -35,6 +37,7 @@ import { ApiNativeProvider } from '../providers/api-native/api-native';
     StatusBar,
     SplashScreen,
     LaunchNavigator,
+    Geolocation,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
