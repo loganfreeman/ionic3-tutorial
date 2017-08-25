@@ -20,6 +20,18 @@ function findTextAndReturnRemainder(target, variable) {
   return result;
 }
 
+function getRating(status:string) {
+  let ratings = {
+    "Good": 3,
+    "Hot": 4,
+    "Fair": 2,
+    "Slow": 1,
+    "Closed": 0,
+    "No recent report": 0
+  }
+  return ratings[status];
+}
+
 function getWaterBody(text,waterbodies = []) {
   if (!text) {
     return;
@@ -35,6 +47,7 @@ function getWaterBody(text,waterbodies = []) {
         longitude: waterbody[1],
         latitude: waterbody[2],
         status: waterbody[4],
+        rate: getRating(waterbody[4]),
         kind: waterbody[5],
         link: waterbody[6]
       });

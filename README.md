@@ -33,3 +33,20 @@ ionic cordova run browser
 # run on device
 ionic cordova run android --device
 ```
+
+
+### How to install plugin
+```
+ionic cordova plugin add cordova-plugin-http
+```
+
+### How to debug
+```
+ionic cordova run <ios or android> --device -l --debug
+```
+
+- For Android open Chrome and go to `Web Inspector`.
+`Open ~ ⠇> More tools > Remote devices`
+Select your device and click Inspect.
+- For iOS open Safari and enable `Develop Menu`.
+`Open ~ Develop > my device > my ip address`.
