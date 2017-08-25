@@ -8,7 +8,7 @@ import { MusicPage } from '../pages/music/music';
 
 import { HttpModule, JsonpModule } from '@angular/http';
 
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,6 +34,7 @@ import { ApiNativeProvider } from '../providers/api-native/api-native';
   providers: [
     StatusBar,
     SplashScreen,
+    LaunchNavigator,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,

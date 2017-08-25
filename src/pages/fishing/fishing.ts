@@ -8,7 +8,7 @@ import { ApiNativeProvider } from './../../providers/api-native/api-native';
 
 import { Observable } from 'rxjs/Observable';
 
-
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 
 @IonicPage()
@@ -24,7 +24,7 @@ export class FishingPage {
     content: 'Loading Please Wait...'
   });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider, public loadingCtrl: LoadingController, private launchNavigator: LaunchNavigator) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
@@ -46,7 +46,8 @@ export class FishingPage {
   }
 
   navigate(latitude, longitude) {
-   return true;
+    console.log(latitude, longitude);
+    this.launchNavigator.navigate([latitude, longitude]);
   }
 
   presentLoadingText() {
