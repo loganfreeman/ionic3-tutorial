@@ -6,6 +6,16 @@ import { MusicPage } from '../music/music';
 
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation';
 
+import {
+ GoogleMaps,
+ GoogleMap,
+ GoogleMapsEvent,
+ LatLng,
+ CameraPosition,
+ MarkerOptions,
+ Marker
+} from '@ionic-native/google-maps';
+
 declare var google;
 
 @IonicPage()
@@ -16,15 +26,66 @@ declare var google;
 export class HelloIonicPage {
   options : GeolocationOptions;
   currentPos : Geoposition;
+  googleMap: GoogleMap;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  constructor(public navCtrl: NavController, private geolocation : Geolocation) {
+  constructor(public navCtrl: NavController, private geolocation : Geolocation, private googleMaps: GoogleMaps) {
 
   }
 
   ionViewDidEnter(){
-      this.getUserPosition();
+      //this.getUserPosition();
+      //this.loadMap();
   }
+
+  loadMap() {
+    // let element: HTMLElement = document.getElementById('map');
+    this.googleMap = this.googleMaps.create(this.mapElement.nativeElement);
+      // listen to MAP_READY event
+    // You must wait for this event to fire before adding something to the map or modifying it in anyway
+    this.googleMap.one(GoogleMapsEvent.MAP_READY).then(
+      () => {
+        console.log('Map is ready!');
+        this.getMyLocation();
+      }
+    );
+  }
+
+  getMyLocation() {
+    this.googleMap.getMyLocation().then(position => {
+      console.log(position);
+      this.moveToPosition(position);
+    })
+  }
+
+  moveToPosition(location) {
+    // create CameraPosition
+     let position: CameraPosition = {
+       target: {
+         lat: location.latLng.lat,
+         lng: location.latLng.lng
+       },
+       zoom: 18,
+       tilt: 30
+     };
+    // move the map's camera to position
+    this.googleMap.moveCamera(position);
+
+    // create new marker
+    let markerOptions: MarkerOptions = {
+      position: {
+        lat: location.latLng.lat,
+        lng: location.latLng.lng
+      },
+      title: 'My Location'
+    };
+
+    this.googleMap.addMarker(markerOptions)
+      .then((marker: Marker) => {
+         marker.showInfoWindow();
+       });
+    }
+
 
   getUserPosition(){
       this.options = {
