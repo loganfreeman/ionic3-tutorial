@@ -7,7 +7,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="keyword" (ionInput)="setFilter()"></ion-searchbar>
+
+  <ion-list radio-group>
+    <ion-item *ngFor="let status of ['All', 'Good', 'Hot', 'Fair', 'Slow', 'Closed']">
+      <ion-label>{{status}}</ion-label>
+      <ion-radio value="{{status}}" (ionSelect)="onStatusChange(status)"></ion-radio>
+    </ion-item>
+  </ion-list>
   <ion-list>
 
 
