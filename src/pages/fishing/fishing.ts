@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
-
-import { ItemDetailsPage } from '../item-details/item-details';
+import { NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 
 import { IonicPage } from 'ionic-angular';
 
@@ -21,12 +19,22 @@ import { Observable } from 'rxjs/Observable';
 export class FishingPage {
   icons: string[];
   items: Observable<any>;
+  loading: Loading  = this.loadingCtrl.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...'
+  });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public apiProvider: ApiNativeProvider, public loadingCtrl: LoadingController) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = this.apiProvider.getHotSpots();
+
+    this.items.subscribe(response=>{
+      this.loading.dismiss();
+    });
+
+    this.presentLoadingText();
     // this.items = [];
     // for(let i = 1; i < 11; i++) {
     //   this.items.push({
@@ -35,6 +43,10 @@ export class FishingPage {
     //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
     //   });
     // }
+  }
+
+  presentLoadingText() {
+    this.loading.present();
   }
 
   itemTapped(event, item) {
