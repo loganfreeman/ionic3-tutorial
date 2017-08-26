@@ -105,12 +105,18 @@ export class FishingPage {
   distanceChange() {
     // this.showAlert("distance changed", this.distance);
     this.currentPos.then(pos => {
-      let distance = geolib.getDistance(
-          {latitude: pos.coords.latitude, longitude: pos.coords.longitude},
-          {latitude: "51° 31' N", longitude: "7° 28' E"}
-      );
-      this.showAlert("distance", distance);
+      if(!this.distance) {
+        this.distance = 0;
+      }
+      this.getHotSpotsInRadius(this.distance * 1609.34, pos);
     });
+  }
+
+  getDistance(hotspot, pos) {
+    return geolib.getDistance(
+        {latitude: pos.coords.latitude, longitude: pos.coords.longitude},
+        {latitude: hotspot.latitude, longitude: hotspot.longitude}
+    );
   }
 
   getHotSpotsInRadius(distance, currentPos) {
@@ -120,7 +126,7 @@ export class FishingPage {
 
     return this.items = this.originalItems
          .map(items => items.filter(item => {
-           return item.status === status;
+           return this.getDistance(item, currentPos) < distance;
          }));
   }
 
