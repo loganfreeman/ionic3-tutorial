@@ -9,9 +9,28 @@
 
 <ion-content>
 <ion-list>
-  <button ion-item *ngFor="let film of (films | async)?.results" (click)="openDetails(film)">
-    {{ film.trackName }}
-  </button>
+  <ion-card ion-item *ngFor="let film of (films | async)?.results" (click)="openDetails(film)">
+
+    <ion-card-header>
+      <strong>{{ film.trackName }}</strong>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item text-wrap>
+          Collection: {{ film.collectionName }}
+        </ion-item>
+        <ion-item text-wrap>
+          Artist: {{ film.artistName }}
+        </ion-item>
+        <ion-item text-wrap>
+          Price: {{ film.trackPrice }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+
+  </ion-card>
 </ion-list>
 
 </ion-content>

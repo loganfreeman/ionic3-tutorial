@@ -32,7 +32,8 @@ export class MyApp {
       { title: 'Google Map', component: 'GoogleMapPage'},
       { title: 'Tabs', component: 'TabsPage'},
       { title: 'Fishing Report', component: 'FishingPage'},
-      { title: 'itunes', component: 'FilmsPage'}
+      { title: 'Itunes', component: 'FilmsPage'},
+      { title: 'Stocking', component: 'StockingPage'}
     ];
   }
 
