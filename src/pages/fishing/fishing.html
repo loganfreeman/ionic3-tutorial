@@ -14,14 +14,9 @@
 
   <ion-list>
     <ion-item>
-      Distance
+      <ion-label fixed>Distance</ion-label>
+      <ion-input type="number" [(ngModel)]="distance"></ion-input>
       <ion-badge item-end color="secondary">{{distance}}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-range min="5" max="200" pin="true" [(ngModel)]="distance" color="secondary">
-        <ion-label range-left>5</ion-label>
-        <ion-label range-right>200</ion-label>
-      </ion-range>
     </ion-item>
   </ion-list>
 
