@@ -15,7 +15,7 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>Distance</ion-label>
-      <ion-input type="number" [(ngModel)]="distance"></ion-input>
+      <ion-input type="number" [(ngModel)]="distance" (blur)="distanceChange($event)"></ion-input>
       <ion-badge item-end color="secondary">{{distance}}</ion-badge>
     </ion-item>
   </ion-list>
