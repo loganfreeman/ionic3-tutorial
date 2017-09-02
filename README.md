@@ -40,6 +40,17 @@ ionic cordova run android --device
 ionic cordova plugin add cordova-plugin-http
 ```
 
+### [How to generate signed APK](http://ionicframework.com/docs/v1/guide/publishing.html)
+```
+ionic cordova build --release android
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+```
+
+To sign the unsigned APK, run the `jarsigner` tool which is also included in the JDK:
+```
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore HelloWorld-release-unsigned.apk alias_name
+```
+
 ### How to debug
 ```
 ionic cordova run <ios or android> --device -l --debug
